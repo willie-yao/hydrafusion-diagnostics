@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hydrafusion Diagnostics</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Copilot session</p>
+        <h1>Hydrafusion Diagnostics</h1>
+      </div>
+      <div class="connection" aria-live="polite">
+        <span id="connection-dot" class="status-dot"></span>
+        <span id="connection-label">Connecting</span>
+      </div>
+    </header>
+
+    <main>
+      <section aria-labelledby="session-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Configuration</p>
+            <h2 id="session-heading">Current session</h2>
+          </div>
+        </div>
+        <dl id="session-grid" class="summary-grid"></dl>
+      </section>
+
+      <section aria-labelledby="metrics-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Usage</p>
+            <h2 id="metrics-heading">Session metrics</h2>
+          </div>
+        </div>
+        <div id="metric-cards" class="metric-grid"></div>
+        <div class="table-wrap">
+          <table>
+            <caption>Usage by concrete model</caption>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Requests</th>
+                <th scope="col">Input</th>
+                <th scope="col">Output</th>
+                <th scope="col">Cache read</th>
+                <th scope="col">nano-AIU</th>
+              </tr>
+            </thead>
+            <tbody id="model-metrics"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="workflow-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Orchestration</p>
+            <h2 id="workflow-heading">Hydrafusion workflow</h2>
+          </div>
+          <span id="turn-count" class="count-badge">0 turns</span>
+        </div>
+        <div id="errors" class="errors" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state">
+          <strong>No Hydrafusion activity yet</strong>
+          <span>Start a prompt with Hydrafusion selected to see its concrete model workflow.</span>
+        </div>
+        <div id="turns" class="turns"></div>
+      </section>
+
+      <section aria-labelledby="tools-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Execution</p>
+            <h2 id="tools-heading">Tool activity</h2>
+          </div>
+        </div>
+        <div id="tool-summary" class="metric-grid"></div>
+        <div id="tool-list" class="tool-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/app.js"></script>
+  </body>
+</html>
+
