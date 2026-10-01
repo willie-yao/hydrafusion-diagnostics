@@ -7,37 +7,65 @@
     <link rel="stylesheet" href="./assets/styles.css">
   </head>
   <body>
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">Copilot session</p>
-        <h1>Hydrafusion Diagnostics</h1>
+    <!--
+      THESIS: Hydrafusion is one routed signal, not a grid of dashboard cards.
+      OWN-WORLD: Graphite and steel panels use etched rules, tabular readings,
+      lime live lamps, and coral fault lamps.
+      STORY: Read the active route first, then inspect model usage, tools, and
+      earlier turns without leaving the session.
+      FIRST VIEWPORT: A compact instrument header sits above a full-width live
+      route; session readings dock beneath the signal path.
+      FORM: Signal Patchbay, grounded direction six, continuous-trace staging,
+      seed d7527a6a.
+    -->
+    <header class="instrument-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">HF</span>
+        <div>
+          <h1>Hydrafusion Diagnostics</h1>
+          <p>Live orchestration signal</p>
+        </div>
       </div>
-      <div class="connection" aria-live="polite">
+      <div class="connection" aria-live="polite" role="status">
         <span id="connection-dot" class="status-dot"></span>
         <span id="connection-label">Connecting</span>
       </div>
     </header>
 
     <main>
-      <section aria-labelledby="session-heading">
-        <div class="section-heading">
+      <section class="route-panel" aria-labelledby="workflow-heading">
+        <div class="panel-heading">
           <div>
-            <p class="eyebrow">Configuration</p>
-            <h2 id="session-heading">Current session</h2>
+            <h2 id="workflow-heading">Signal route</h2>
+            <p>Concrete model handoffs for this session</p>
           </div>
+          <span id="turn-count" class="count-readout">0 entries</span>
         </div>
-        <dl id="session-grid" class="summary-grid"></dl>
+        <div id="errors" class="errors" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state">
+          <span class="empty-state__lamp" aria-hidden="true"></span>
+          <strong>Waiting for signal</strong>
+          <span>Start a prompt with Hydrafusion selected. The route will appear here as each model phase runs.</span>
+        </div>
+        <div id="turns" class="turns"></div>
       </section>
 
-      <section aria-labelledby="metrics-heading">
-        <div class="section-heading">
+      <section class="session-panel" aria-labelledby="session-heading">
+        <div class="panel-heading">
+          <h2 id="session-heading">Session input</h2>
+        </div>
+        <dl id="session-grid" class="session-readings"></dl>
+      </section>
+
+      <section class="usage-panel" aria-labelledby="metrics-heading">
+        <div class="panel-heading">
           <div>
-            <p class="eyebrow">Usage</p>
-            <h2 id="metrics-heading">Session metrics</h2>
+            <h2 id="metrics-heading">Model telemetry</h2>
+            <p>Aggregate usage reported by the current Copilot session</p>
           </div>
         </div>
-        <div id="metric-cards" class="metric-grid"></div>
-        <div class="table-wrap">
+        <div id="metric-cards" class="measurement-strip"></div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Concrete model usage table">
           <table>
             <caption>Usage by concrete model</caption>
             <thead>
@@ -55,35 +83,18 @@
         </div>
       </section>
 
-      <section aria-labelledby="workflow-heading">
-        <div class="section-heading">
+      <section class="tools-panel" aria-labelledby="tools-heading">
+        <div class="panel-heading">
           <div>
-            <p class="eyebrow">Orchestration</p>
-            <h2 id="workflow-heading">Hydrafusion workflow</h2>
-          </div>
-          <span id="turn-count" class="count-badge">0 turns</span>
-        </div>
-        <div id="errors" class="errors" aria-live="polite"></div>
-        <div id="empty-state" class="empty-state">
-          <strong>No Hydrafusion activity yet</strong>
-          <span>Start a prompt with Hydrafusion selected to see its concrete model workflow.</span>
-        </div>
-        <div id="turns" class="turns"></div>
-      </section>
-
-      <section aria-labelledby="tools-heading">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Execution</p>
-            <h2 id="tools-heading">Tool activity</h2>
+            <h2 id="tools-heading">Tool channels</h2>
+            <p>Privacy-safe execution counts by tool</p>
           </div>
         </div>
-        <div id="tool-summary" class="metric-grid"></div>
-        <div id="tool-list" class="tool-list"></div>
+        <div id="tool-summary" class="measurement-strip measurement-strip--compact"></div>
+        <div id="tool-list" class="tool-channels"></div>
       </section>
     </main>
 
     <script type="module" src="./assets/app.js"></script>
   </body>
 </html>
-
