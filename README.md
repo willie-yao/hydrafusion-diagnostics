@@ -9,14 +9,14 @@ Download the latest release into the Copilot user extensions directory:
 
 ```sh
 mkdir -p ~/.copilot/extensions/hydrafusion-diagnostics
-curl -fsSL https://github.com/willie-yao/hydrafusion-diagnostics/archive/refs/tags/v0.2.1.tar.gz \
+curl -fsSL https://github.com/willie-yao/hydrafusion-diagnostics/archive/refs/tags/v0.2.2.tar.gz \
   | tar -xz --strip-components=1 \
       -C ~/.copilot/extensions/hydrafusion-diagnostics
 ```
 
 Start a new chat, or restart Copilot, so the extension loads.
 
-To install the development version instead, replace `refs/tags/v0.2.1` with
+To install the development version instead, replace `refs/tags/v0.2.2` with
 `refs/heads/main`.
 
 ## Usage
