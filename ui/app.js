@@ -27,7 +27,6 @@ function requireOk(response) {
 
 function render(state) {
     setConnection(state.connection);
-    renderSession(state.session);
     renderMetrics(state.usage);
     renderTurns(state.fusionTurns ?? [], state.routingAttempts ?? []);
     renderTools(state.tools ?? {});
@@ -45,26 +44,6 @@ function setConnection(status) {
     $("#connection-label").textContent = labels[status] ?? "Unknown";
     $("#connection-dot").className = `status-dot ${labels[status] ? status : ""}`;
     document.documentElement.dataset.connection = status;
-}
-
-function renderSession(session = {}) {
-    const values = [
-        ["Selected model", session.selectedModel],
-        ["Reasoning", session.reasoningEffort],
-        ["Context tier", session.contextTier],
-        ["Auto tier", session.autoTier],
-    ];
-    $("#session-grid").replaceChildren(
-        ...values.map(([label, value]) => {
-            const wrapper = document.createElement("div");
-            const term = document.createElement("dt");
-            const detail = document.createElement("dd");
-            term.textContent = label;
-            detail.textContent = value || "Not reported";
-            wrapper.append(term, detail);
-            return wrapper;
-        }),
-    );
 }
 
 function renderMetrics(usage = {}) {

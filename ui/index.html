@@ -14,7 +14,7 @@
       STORY: Read the active route first, then inspect model usage, tools, and
       earlier turns without leaving the session.
       FIRST VIEWPORT: A compact instrument header sits above a full-width live
-      route; session readings dock beneath the signal path.
+      route; model and tool telemetry dock beneath the signal path.
       FORM: Signal Patchbay, grounded direction six, continuous-trace staging,
       seed d7527a6a.
     -->
@@ -48,13 +48,6 @@
           <span>Start a prompt with Hydrafusion selected. The route will appear here as each model phase runs.</span>
         </div>
         <div id="turns" class="turns"></div>
-      </section>
-
-      <section class="session-panel" aria-labelledby="session-heading">
-        <div class="panel-heading">
-          <h2 id="session-heading">Session input</h2>
-        </div>
-        <dl id="session-grid" class="session-readings"></dl>
       </section>
 
       <section class="usage-panel" aria-labelledby="metrics-heading">
