@@ -9,15 +9,20 @@ Download the latest release into the Copilot user extensions directory:
 
 ```sh
 mkdir -p ~/.copilot/extensions/hydrafusion-diagnostics
-curl -fsSL https://github.com/willie-yao/hydrafusion-diagnostics/archive/refs/tags/v0.2.0.tar.gz \
+curl -fsSL https://github.com/willie-yao/hydrafusion-diagnostics/archive/refs/tags/v0.2.1.tar.gz \
   | tar -xz --strip-components=1 \
       -C ~/.copilot/extensions/hydrafusion-diagnostics
 ```
 
-Reload extensions in Copilot, then open the **Hydrafusion Diagnostics** canvas.
+Start a new chat, or restart Copilot, so the extension loads.
 
-To install the development version instead, replace `refs/tags/v0.2.0` with
+To install the development version instead, replace `refs/tags/v0.2.1` with
 `refs/heads/main`.
+
+## Usage
+
+Run `/hydrafusion` in a chat to open the dashboard. You can also ask Copilot to
+open the **Hydrafusion Diagnostics** canvas.
 
 The extension uses the Copilot SDK contracts supplied by the host application.
 It does not require a separate runtime dependency.

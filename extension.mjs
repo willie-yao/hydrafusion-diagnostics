@@ -53,8 +53,10 @@ const server = await createDiagnosticsServer({
     },
 });
 
+const canvasId = "hydrafusion-diagnostics";
+
 const canvas = createCanvas({
-    id: "hydrafusion-diagnostics",
+    id: canvasId,
     displayName: "Hydrafusion Diagnostics",
     description: "Shows Hydrafusion workflow phases, concrete models, latency, tokens, and normalized cost.",
     open: () => ({
@@ -64,7 +66,30 @@ const canvas = createCanvas({
     }),
 });
 
-const session = await joinSession({ canvases: [canvas] });
+async function openDashboard() {
+    try {
+        const { canvases } = await session.rpc.canvas.list();
+        const declared = canvases.find((item) => item.canvasId === canvasId);
+        await session.rpc.canvas.open({
+            extensionId: declared?.extensionId,
+            canvasId,
+            instanceId: canvasId,
+        });
+    } catch {
+        await session.log("Hydrafusion Diagnostics could not be opened.", { level: "error" });
+    }
+}
+
+const session = await joinSession({
+    canvases: [canvas],
+    commands: [
+        {
+            name: "hydrafusion",
+            description: "Open the Hydrafusion Diagnostics canvas",
+            handler: openDashboard,
+        },
+    ],
+});
 
 async function refreshMetrics() {
     try {
